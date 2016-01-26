@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Edit View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="EditViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +18,131 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0rv-bM-pmo">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="yXb-5v-Ila"/>
+                                    <barButtonItem systemItem="camera" id="YzX-HL-ppS">
+                                        <connections>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="3dg-71-fAj"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="DFv-mw-ofZ"/>
+                                    <barButtonItem systemItem="organize" id="ud9-Kd-6Y6">
+                                        <connections>
+                                            <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="03e-pY-gmT"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6UZ-7f-5DC"/>
+                                </items>
+                            </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="7hp-BA-LFb">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="hFA-8f-kTb">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="5FW-CC-f4g">
+                                        <variation key="widthClass=compact" constant="300"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="400" id="tCX-zO-A8b">
+                                        <variation key="widthClass=compact" constant="300"/>
+                                    </constraint>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5FW-CC-f4g"/>
+                                        <exclude reference="tCX-zO-A8b"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="185" y="285" width="30" height="30"/>
+                                    <mask key="constraints">
+                                        <include reference="5FW-CC-f4g"/>
+                                        <include reference="tCX-zO-A8b"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bq1-Oz-0oC">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7hp-BA-LFb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="4mE-9E-U61"/>
+                            <constraint firstItem="Bq1-Oz-0oC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="D0P-YJ-IMK"/>
+                            <constraint firstItem="7hp-BA-LFb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Hzp-H4-ik9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0rv-bM-pmo" secondAttribute="trailing" constant="-20" id="ODi-o1-fbS"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0rv-bM-pmo" secondAttribute="bottom" id="UBY-zL-lfy"/>
+                            <constraint firstItem="hFA-8f-kTb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="VDE-12-kaw"/>
+                            <constraint firstItem="7hp-BA-LFb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Z9y-WK-wmi"/>
+                            <constraint firstItem="hFA-8f-kTb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="g7S-Mj-mZX"/>
+                            <constraint firstItem="0rv-bM-pmo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="xsW-rw-cFQ"/>
+                            <constraint firstItem="0rv-bM-pmo" firstAttribute="top" secondItem="Bq1-Oz-0oC" secondAttribute="bottom" constant="32" id="yRM-H0-83h"/>
+                            <constraint firstItem="Bq1-Oz-0oC" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="znE-Qv-006"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="0rv-bM-pmo"/>
+                                <exclude reference="7hp-BA-LFb"/>
+                                <exclude reference="hFA-8f-kTb"/>
+                                <exclude reference="Bq1-Oz-0oC"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="UBY-zL-lfy"/>
+                                <exclude reference="4mE-9E-U61"/>
+                                <exclude reference="Hzp-H4-ik9"/>
+                                <exclude reference="Z9y-WK-wmi"/>
+                                <exclude reference="D0P-YJ-IMK"/>
+                                <exclude reference="znE-Qv-006"/>
+                                <exclude reference="ODi-o1-fbS"/>
+                                <exclude reference="xsW-rw-cFQ"/>
+                                <exclude reference="yRM-H0-83h"/>
+                                <exclude reference="VDE-12-kaw"/>
+                                <exclude reference="g7S-Mj-mZX"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="0rv-bM-pmo"/>
+                                <include reference="7hp-BA-LFb"/>
+                                <include reference="hFA-8f-kTb"/>
+                                <include reference="Bq1-Oz-0oC"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="UBY-zL-lfy"/>
+                                <include reference="4mE-9E-U61"/>
+                                <include reference="Hzp-H4-ik9"/>
+                                <include reference="Z9y-WK-wmi"/>
+                                <include reference="D0P-YJ-IMK"/>
+                                <include reference="znE-Qv-006"/>
+                                <include reference="ODi-o1-fbS"/>
+                                <include reference="xsW-rw-cFQ"/>
+                                <include reference="yRM-H0-83h"/>
+                                <include reference="VDE-12-kaw"/>
+                                <include reference="g7S-Mj-mZX"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="imagePreview" destination="hFA-8f-kTb" id="wb3-9x-N1y"/>
+                        <outlet property="pickImageFromAlbumButton" destination="ud9-Kd-6Y6" id="USc-Ht-qbP"/>
+                        <outlet property="pickImageFromCameraButton" destination="YzX-HL-ppS" id="z3w-eU-flq"/>
+                        <outlet property="textBottom" destination="Bq1-Oz-0oC" id="7KF-h5-D9B"/>
+                        <outlet property="textTop" destination="7hp-BA-LFb" id="uYO-v5-jVM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="457.5" y="293"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Image" width="3888" height="2592"/>
+    </resources>
 </document>
