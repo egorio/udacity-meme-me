@@ -25,6 +25,6 @@ class PreviewViewController: UIViewController {
 
         controller.meme = meme
 
-        navigationController!.pushViewController(controller, animated: true)
+        presentViewController(controller, animated: true, completion: nil)
     }
 }

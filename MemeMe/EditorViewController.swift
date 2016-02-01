@@ -203,6 +203,6 @@ class EditorViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
         )
 
-        self.presentViewController(alert, animated: true, completion: nil)
+        presentViewController(alert, animated: true, completion: nil)
     }
 }
