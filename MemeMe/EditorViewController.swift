@@ -17,6 +17,7 @@ class EditorViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var pickImageFromCameraButton: UIBarButtonItem!
     @IBOutlet weak var pickImageFromAlbumButton: UIBarButtonItem!
     @IBOutlet weak var shareMemedImageButton: UIBarButtonItem!
+    @IBOutlet weak var toolbarTop: UIToolbar!
 
     let keyboardMoveListener = KeyboardMoveListener()
     let textTopDelegate = MemeTextFieldDelegate()
@@ -46,20 +47,17 @@ class EditorViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        keyboardMoveListener.subscribe(view, elements: [textBottom]) }
+        keyboardMoveListener.subscribe(view, elements: [textBottom])
+    }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
 
         keyboardMoveListener.unsubscribe()
-
-        navigationController?.setToolbarHidden(true, animated: false)
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
-        navigationController?.setToolbarHidden(false, animated: true)
     }
 
     /*
@@ -143,9 +141,9 @@ class EditorViewController: UIViewController, UIImagePickerControllerDelegate, U
 
                 // Move to MemeView position
                 let statusBarHeight = (view.window?.convertRect(UIApplication.sharedApplication().statusBarFrame, fromView: view))!.height
-                let navigationBarHeight = navigationController!.navigationBar.frame.height
+                let toolbarHeight = toolbarTop.frame.height
                 let context = UIGraphicsGetCurrentContext() ;
-                CGContextTranslateCTM(context, 0, -(statusBarHeight + navigationBarHeight)) ;
+                CGContextTranslateCTM(context, 0, -(statusBarHeight + toolbarHeight)) ;
 
                 // Take "screenshot" of MemeView
                 view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
@@ -190,5 +188,21 @@ class EditorViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
 
         presentViewController(controller, animated: true, completion: nil)
+    }
+
+    @IBAction func cancelEdit(sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Do you really want to cancel editing?", message: nil, preferredStyle: .Alert)
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Default) { (action: UIAlertAction!) in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        )
+
+        alert.addAction(UIAlertAction(title: "Keep editing", style: .Default) { (action: UIAlertAction!) in
+                alert.dismissViewControllerAnimated(true, completion: nil)
+            }
+        )
+
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
