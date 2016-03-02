@@ -1,6 +1,6 @@
 # MemeMe
 
-The MemeMe is result of **iOS Networking with Swift** lesson of **Udacity's iOS Developer Nanodegree** course.
+The MemeMe is result of **UIKit Fundamentals** lesson of **Udacity's iOS Developer Nanodegree** course.
 
 MemeMe is a meme-generating app that enables a user to attach a caption to a picture from their phone. 
 After adding text to an image chosen from the Photo Album or Camera, the user can share it with friends. 
